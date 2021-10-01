@@ -1,0 +1,7 @@
+---
+manifest_version: "1"
+name: who
+ui:
+  bundled: "../ui/apps/who/ui.zip"
+happ_manifest:
+  bundled: "../dna/workdir/happ/who.happ"

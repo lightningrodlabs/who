@@ -1,0 +1,15 @@
+---
+manifest_version: "1"
+name: who
+description: ~
+slots:
+  - id: who-slot
+    provisioning:
+      strategy: create
+      deferred: false
+    dna:
+      bundled: "../dna/who.dna"
+      properties: ~
+      uuid: ~
+      version: ~
+      clone_limit: 0
