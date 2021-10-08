@@ -2,8 +2,7 @@
   "name": "who-dev",
   "private": true,
   "workspaces": [
-    "ui/apps/*",
-    "ui/lib",
+    "ui",
     "tests"
   ],
   "scripts": {
