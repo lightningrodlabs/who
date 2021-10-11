@@ -2,22 +2,22 @@
   "name": "who-dev",
   "private": true,
   "workspaces": [
-    "ui/apps/*",
-    "ui/lib",
+    "ui",
     "tests"
   ],
   "scripts": {
-    "start": "npm run build:happ && npm run build -w @who/elements && cross-env HC_PORT=$(port) concurrently -k \"npm run start:happ\" \"npm run start -w who\"",
-    "start-proxied": "npm run build:happ && npm run build -w @who/elements && cross-env HC_PORT=$(port) concurrently -k \"npm run start:happ-proxied\" \"npm run start -w who\"",
-    "start-rerun": "cross-env HC_PORT=8888 concurrently -k \"npm run build:watch -w @who/elements\" \"hc s run 0 -p 8888\" \"npm run start -w who\"",
+    "start": "npm run build:happ && npm run build -w who && cross-env HC_PORT=$(port) concurrently -k \"npm run start:happ\" \"npm run start -w who\"",
+    "start-proxied": "npm run build:happ && npm run build -w who && cross-env HC_PORT=$(port) concurrently -k \"npm run start:happ-proxied\" \"npm run start -w who\"",
+    "start-rerun": "cross-env HC_PORT=8888 concurrently -k \"npm run build:watch -w who\" \"hc s run 0 -p 8888\" \"npm run start -w who\"",
     "test": "npm run build:happ && npm t -w tests",
     "start:happ": "rimraf .hc* && RUST_LOG=warn hc s generate ./dna/workdir/happ/who.happ --run=$HC_PORT -a who network mdns",
     "start:happ-proxied": "rimraf .hc* && RUST_LOG=warn hc s generate ./dna/workdir/happ/who.happ --run=$HC_PORT -a who network --bootstrap https://bootstrap-staging.holo.host/ quic -p=kitsune-proxy://SYVd4CF3BdJ4DS7KwLLgeU3_DbHoZ34Y-qroZ79DOs8/kitsune-quic/h/165.22.32.11/p/5779/--",
-    "package": "npm run build:happ && npm run build -w @who/elements && npm run package -w who && hc web-app pack workdir",
+    "build": "npm run build:happ && npm run build -w who",
+    "package": "npm run build:happ && npm run build -w who && npm run package -w who && hc web-app pack workdir",
     "build:happ": "npm run build:dna && hc app pack ./dna/workdir/happ",
     "build:dna": "npm run build:zome && hc dna pack ./dna/workdir/dna",
-    "build:zome": "cd dna && CARGO_TARGET_DIR=target cargo build --release --target wasm32-unknown-unknown",
-    "clean": "rimraf node_modules && rimraf ui/apps/who/node_modules/  && rimraf ui/lib/node_modules && rimraf test/node_modules"
+    "build:zome": "CARGO_TARGET_DIR=target cargo build --release --target wasm32-unknown-unknown",
+    "clean": "rimraf node_modules && rimraf ui/node_modules/ &&  rimraf test/node_modules"
   },
   "devDependencies": {
     "concurrently": "^6.2.1",

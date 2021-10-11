@@ -5,6 +5,6 @@ uuid: 00000000-0000-0000-0000-000000000000
 properties: ~
 zomes:
   - name: hc_zome_who
-    bundled: ../../target/wasm32-unknown-unknown/release/who.wasm
+    bundled: ../../../target/wasm32-unknown-unknown/release/who.wasm
   - name: profiles
-    bundled: ../../target/wasm32-unknown-unknown/release/profiles.wasm
+    bundled: ../../../target/wasm32-unknown-unknown/release/profiles.wasm
