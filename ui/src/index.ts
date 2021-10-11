@@ -10,15 +10,17 @@ import {
   ProfilePrompt,
 } from "@holochain-open-dev/profiles";
 import { AppWebsocket, InstalledCell } from "@holochain/conductor-api";
+import { ScopedElementsHost } from "@open-wc/scoped-elements/types/src/types";
 
 export default function (appWebsocket: AppWebsocket, cellData: InstalledCell) {
   const client = new HolochainClient(appWebsocket, cellData);
   const store = new ProfilesStore(client);
 
   return {
-    full(element: HTMLElement, registry: CustomElementRegistry) {
-      registry.define("who-app", Who);
-      render(html`<who-app .store=${store}></who-app>`, element);
+    full(element: HTMLElement, host: ScopedElementsHost) {
+      host.defineScopedElement("who-app", Who);
+      element.innerHTML = `<who-app></who-app>`;
+      (element.querySelector('who-app') as any).store = store
     },
     blocks: [],
   };

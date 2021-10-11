@@ -1,6 +1,5 @@
 use hdk::prelude::*;
 use std::convert::Infallible;
-use hc_utils::UtilsError;
 
 #[derive(thiserror::Error, Debug)]
 pub enum WhoError {
@@ -16,8 +15,6 @@ pub enum WhoError {
     Wasm(#[from] WasmError),
     #[error(transparent)]
     Timestamp(#[from] TimestampError),
-    #[error(transparent)]
-    UtilsError(#[from] UtilsError),
 }
 
 pub type WhoResult<T> = Result<T, WhoError>;

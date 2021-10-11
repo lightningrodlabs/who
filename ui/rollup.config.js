@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import postcssLit from 'rollup-plugin-postcss-lit';
+import builtins from 'rollup-plugin-node-builtins';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import postcssCQFill from 'cqfill/postcss';
@@ -25,7 +26,11 @@ export default {
     typescript({
       target: 'es6',
     }),
-    resolve(),
+    resolve({
+      browser: true,
+      preferBuiltins: false
+    }),
     commonjs(),
+    builtins()
   ],
 };
